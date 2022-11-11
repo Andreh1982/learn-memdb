@@ -1,0 +1,23 @@
+version: '3.8'
+
+volumes:
+  redis_data: {}
+
+services:
+  learn-memdb:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - "upx=1"
+    ports:
+      - "9001:9001"
+    networks:
+      - learn-memdb
+    env_file: 
+      - ./.env.docker.local
+
+networks:
+  learn-memdb:
+    driver: bridge
+
