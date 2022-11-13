@@ -47,8 +47,8 @@ func createEntry(c *gin.Context, managerUseCases learnmemdb.UseCases) {
 func deleteEntry(c *gin.Context, managerUseCases learnmemdb.UseCases) {
 	context := getContext(c)
 	entryID := c.Param("entry_id")
-	result, err := managerUseCases.Delete(context, entryID)
-	respond(c, result, err)
+	_ = managerUseCases.Delete(context, entryID)
+	c.JSON(http.StatusOK, gin.H{"body": "deleted " + entryID})
 }
 
 func readEntry(c *gin.Context, managerUseCases learnmemdb.UseCases) {

@@ -1,6 +1,7 @@
 package learnmemdb
 
 import (
+	"fmt"
 	"learn-memdb/internal/domain/appcontext"
 
 	"go.uber.org/zap"
@@ -13,7 +14,7 @@ type Reader interface {
 func (l *learnmemdb) Read(ctx appcontext.Context, entryID string) (learnmemdbEntity *EntryEntity, err error) {
 
 	logger := ctx.Logger()
-	// logger.Info("Reading entry", zap.String("entryID", fmt.Sprint(learnmemdbEntity.EntryID)), zap.String("where", "create"))
+	logger.Info("Reading entry", zap.String("entryID", fmt.Sprint(entryID)), zap.String("where", "read"))
 
 	if entryID == "" {
 		return nil, DomainErrorFactory(BadRequest, "entryID is required")
