@@ -51,7 +51,7 @@ func (e *Single) Setup() {
 
 	e.LOG_LEVEL = getenv("LOG_LEVEL", "debug")
 
-	e.DEFAULT_PERSISTENT = getenvBool("DEFAULT_PERSISTENT", "false")
+	e.DEFAULT_PERSISTENT = getenvBool("DEFAULT_PERSISTENT", "true")
 
 	e.DYNAMO_AWS_ENDPOINT = getenv("DYNAMO_AWS_ENDPOINT", e.AWS_ENDPOINT)
 	e.DYNAMO_TABLE_NAME = getenv("DYNAMO_TABLE_NAME", "learn-memdb")

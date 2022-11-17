@@ -39,7 +39,7 @@ func (d *dynamoDB) Find(key string) (*learnmemdb.EntryEntity, error) {
 	}
 
 	if result != nil && result.Item == nil {
-		return nil, fmt.Errorf("application not found in database")
+		return nil, fmt.Errorf("entry not found in database")
 	}
 
 	dbItem := learnmemdb.EntryEntity{}
