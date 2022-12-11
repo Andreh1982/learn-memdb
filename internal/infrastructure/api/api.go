@@ -20,7 +20,6 @@ func Start(input Input) {
 	r := gin.New()
 
 	logger := input.Logger
-
 	logger.Info("Starting Learn-MemDB API")
 
 	applicationPort := resolvePort()
@@ -46,8 +45,8 @@ func resolvePort() string {
 	const CHAR string = ":"
 	env := environment.GetInstance()
 	port := env.APP_PORT
-	firstChar := port[:1]
-	if firstChar != CHAR {
+	fisrtChar := port[:1]
+	if fisrtChar != CHAR {
 		port = CHAR + port
 	}
 	return port

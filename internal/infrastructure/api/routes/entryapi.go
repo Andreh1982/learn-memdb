@@ -78,5 +78,5 @@ func respond(c *gin.Context, result interface{}, err error) {
 		}
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"body": result})
+	c.JSON(http.StatusOK, result)
 }

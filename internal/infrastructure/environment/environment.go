@@ -25,6 +25,12 @@ type Single struct {
 	DYNAMO_AWS_ENDPOINT string
 	DYNAMO_TABLE_NAME   string
 
+	AWS_SQS_URL_TO_CREATE       string
+	AWS_SQS_URL_TO_DELETE       string
+	SQS_AWS_ENDPOINT            string
+	INTERVAL_GET_KEYS_TO_CREATE int64
+	INTERVAL_GET_KEYS_TO_DELETE int64
+
 	DEFAULT_PERSISTENT bool
 }
 
@@ -51,7 +57,7 @@ func (e *Single) Setup() {
 
 	e.LOG_LEVEL = getenv("LOG_LEVEL", "debug")
 
-	e.DEFAULT_PERSISTENT = getenvBool("DEFAULT_PERSISTENT", "true")
+	e.DEFAULT_PERSISTENT = getenvBool("DEFAULT_PERSISTENT", "false")
 
 	e.DYNAMO_AWS_ENDPOINT = getenv("DYNAMO_AWS_ENDPOINT", e.AWS_ENDPOINT)
 	e.DYNAMO_TABLE_NAME = getenv("DYNAMO_TABLE_NAME", "learn-memdb")

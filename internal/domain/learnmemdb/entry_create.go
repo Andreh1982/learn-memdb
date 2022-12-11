@@ -32,11 +32,13 @@ func (l *learnmemdb) Create(ctx appcontext.Context, learnmemdbEntity EntryEntity
 		return nil, DomainErrorFactory(BadRequest, "entryID is required")
 	}
 
-	_, err := l.repository.Insert(learnmemdbEntity)
+	variavel, err := l.repository.Insert(learnmemdbEntity)
 	if err != nil {
 		logger.Error("error creating entry", zap.Error(err), zap.String("where", "create"))
 		return nil, err
 	}
+
+	fmt.Println(variavel)
 
 	return &learnmemdbEntity, nil
 }

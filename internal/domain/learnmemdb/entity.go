@@ -3,8 +3,8 @@ package learnmemdb
 import "time"
 
 type EntryEntity struct {
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
-	EntryID   string    `json:"entry_id"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
+	EntryID   string    `json:"entryId"`
 	Name      string    `json:"name"`
 }

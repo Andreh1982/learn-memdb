@@ -17,7 +17,9 @@ require (
 )
 
 require (
+	github.com/aws/aws-sdk-go v1.44.157
 	github.com/goombaio/namegenerator v0.0.0-20181006234301-989e774b106e
+	github.com/olebedev/emitter v0.0.0-20190110104742-e8d1457e6aee
 	github.com/prometheus/client_golang v1.14.0
 )
 

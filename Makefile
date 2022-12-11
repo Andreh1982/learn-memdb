@@ -3,6 +3,7 @@ TARGET:=cmd/learn-memdb/main.go
 APP_INTERNAL_DEPTH := $(shell find ./internal -type d -printf '%d\n' | sort -rn | head -1)
 
 include Makefile.dynamodb.mk
+include Makefile.localstack.mk
 
 
 help: ## Show commands and description
@@ -27,9 +28,6 @@ setup: ## Install all dependencies
 
 
 all: build
-
-view-doc: ## Run view doc web application
-	@cd docs/c4 && npm run site
 
 run-docker: dep-dev-run ## Run web application and dependencies inside container
 	@docker-compose -f docker-compose.app.yml -f docker-compose.yml up -d  --build --remove-orphans
@@ -88,6 +86,3 @@ scan: gosec scan-code scan-image
 
 go-to-uml:
 	goplantuml -recursive .  > "docs/diagram_file_name.puml"
-
-mockery:
-	docker run -v ${PWD}:/domain -w /domain vektra/mockery --all
