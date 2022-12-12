@@ -19,6 +19,7 @@ func createPolling(ctx appcontext.Context, input Input, consumer Consumer) {
 		PollingIntervalSeconds: consumer.PollingIntervalSeconds(),
 		AwsEndpoint:            environment.GetInstance().SQS_AWS_ENDPOINT,
 	}
+	logger.Info("Starting polling", zap.String("URL", sqsInput.URL), zap.Int64("PollingIntervalSeconds", sqsInput.PollingIntervalSeconds))
 	for event := range polling.Consume(sqsInput) {
 		err := event.Args[1]
 		if err != nil {

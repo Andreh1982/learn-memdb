@@ -32,7 +32,25 @@ services:
     depends_on:
       - dynamodb-local
       - dynamodb-admin
-      
+
+  sqs-local:
+    image: localstack/localstack:latest
+    environment: 
+      - AWS_DEFAULT_REGION=us-east-1
+      - EDGE_PORT=4566
+      - SERVICES=sqs
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - HOST_TMP_FOLDER=${TMPDIR:-/tmp/}localstack
+      - LEGACY_DIRECTORIES=1
+    ports:
+      - '4566:4566'
+    volumes:
+      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - learn-memdb
+
 networks:
   learn-memdb:
     driver: bridge

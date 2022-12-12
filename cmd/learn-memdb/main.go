@@ -2,6 +2,7 @@ package main
 
 import (
 	"learn-memdb/internal/domain/learnmemdb"
+	worker "learn-memdb/internal/domain/sqsworker"
 	"learn-memdb/internal/infrastructure/api"
 	"learn-memdb/internal/infrastructure/aws"
 	"learn-memdb/internal/infrastructure/database"
@@ -34,7 +35,9 @@ func main() {
 		logger.Error("failed to setup Learn-MemDB", zap.Error(err))
 	}
 
+	setupWorker(logger, learnmemdbUseCases)
 	setupApi(logger, learnmemdbUseCases)
+
 }
 
 func setupLearnMemdb() (learnmemdb.UseCases, error) {
@@ -72,4 +75,17 @@ func setupApi(logger logwrapper.LoggerWrapper, learnmemdbUseCases learnmemdb.Use
 		LearnMemdbUseCases: learnmemdbUseCases,
 	}
 	api.Start(input)
+}
+
+func setupWorker(logger logwrapper.LoggerWrapper, learnmemdbUseCases learnmemdb.UseCases) {
+	env := environment.GetInstance()
+	if !env.DEFAULT_PERSISTENT {
+		return
+	}
+	input := worker.Input{
+		Logger:             logger,
+		LearnMemdbUseCases: learnmemdbUseCases,
+	}
+
+	worker.Start(input)
 }
