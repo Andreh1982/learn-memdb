@@ -14,7 +14,8 @@ func (c *consumerWhoCreates) URL() string {
 
 func (c *consumerWhoCreates) Handler(ctx appcontext.Context, input Input, message SqsEntryEntity) error {
 	entryEntity := &learnmemdb.EntryEntity{
-		EntryID: message.EntryID,
+		EntryID:   message.EntryID,
+		IsFromSqs: true,
 	}
 
 	_, err := input.LearnMemdbUseCases.Create(ctx, *entryEntity)

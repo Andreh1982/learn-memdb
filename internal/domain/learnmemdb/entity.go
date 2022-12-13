@@ -7,4 +7,5 @@ type EntryEntity struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 	EntryID   string    `json:"entryId"`
 	Name      string    `json:"name"`
+	IsFromSqs bool      `json:"isFromSqs"`
 }

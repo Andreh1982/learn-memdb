@@ -3,7 +3,7 @@ TARGET:=cmd/learn-memdb/main.go
 APP_INTERNAL_DEPTH := $(shell find ./internal -type d -printf '%d\n' | sort -rn | head -1)
 
 include Makefile.dynamodb.mk
-include Makefile.localstack.mk
+include Makefile.sqs.mk
 
 
 help: ## Show commands and description
